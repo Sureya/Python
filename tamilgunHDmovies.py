@@ -39,8 +39,8 @@ def get_list(page):
 	return formatted
 
 
-def get_all_pages(soup):
-	all_pages = []
+def get_all_pages(soup,all_pages):
+	
 	uls = soup.find("ul",{"class":"pagination"})
 
 	lis = uls.findAll("li")
@@ -58,11 +58,13 @@ def get_all_pages(soup):
 
 if __name__ == '__main__':
 	
+	all_pages = []
 	url = "http://tamilgun.com/categories/hd-movies/"
-	
+	all_pages.append(url)
+
 	soup = load_website(url)
 
-	all_pages = get_all_pages(soup)
+	get_all_pages(soup,all_pages)
 
 	print "Total %s pages found"%(str(len(all_pages)))
 
