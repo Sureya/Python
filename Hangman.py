@@ -16,6 +16,7 @@ def get_words(min_word_length=4):
     response = r.content.decode('utf-8')
     words = response.splitlines()
     filtered = [word for word in words if len(word)>=min_word_length]
+    print("Considering {} words to pick a word for you mate !".format(len(filtered)))
     return filtered
 
 
