@@ -3,14 +3,20 @@ __author__ : Sureya Sathiamoorthi
 
 """
 import random
+import requests
 
 
-def get_words():
+def get_words(min_word_length=4):
     """
     Alter the function to populate words as per your requirements
     
     """
-    return ["plausible", "eccentric"]
+    url = "https://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
+    r = requests.get(url)
+    response = r.content.decode('utf-8')
+    words = response.splitlines()
+    filtered = [word for word in words if len(word)>=min_word_length]
+    return filtered
 
 
 def validate_input(input_letter):
@@ -82,9 +88,3 @@ class Hangman:
 if __name__ == '__main__':
 
     Hangman(random.choice(get_words()))
-
-
-
-
-
-
